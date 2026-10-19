@@ -1,4 +1,68 @@
 
+const stage = document.querySelector(".stage");
+const revealButton = document.getElementById("revealButton");
+
+// Reveal the full name from the hat
+function revealName() {
+  if (!stage) return;
+
+  // Restart the animation if clicked again
+  stage.classList.remove("revealed");
+  void stage.offsetWidth;
+  stage.classList.add("revealed");
+
+  if (revealButton) {
+    revealButton.textContent = "✧ The magic is yours ✧";
+  }
+}
+
+if (revealButton) {
+  revealButton.addEventListener("click", (event) => {
+    revealName();
+    createFirework(event.clientX, event.clientY);
+  });
+}
+
+// Create a small sparkle burst at a click position
+function createFirework(x, y) {
+  const burst = document.createElement("div");
+  burst.className = "magic-firework";
+  burst.style.left = x + "px";
+  burst.style.top = y + "px";
+
+  const symbols = ["✦", "✧", "⋆", "✴"];
+  const particleCount = 12;
+
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement("span");
+    particle.className = "magic-particle";
+    particle.textContent = symbols[i % symbols.length];
+
+    const angle = (Math.PI * 2 * i) / particleCount;
+    const distance = 30 + Math.random() * 35;
+
+    particle.style.setProperty(
+      "--dx",
+      Math.cos(angle) * distance + "px"
+    );
+    particle.style.setProperty(
+      "--dy",
+      Math.sin(angle) * distance + "px"
+    );
+
+    burst.appendChild(particle);
+  }
+
+  document.body.appendChild(burst);
+  setTimeout(() => burst.remove(), 800);
+}
+
+// Sparkle fireworks on clicks throughout the website
+document.addEventListener("click", (event) => {
+  if (event.target.closest("#revealButton")) return;
+  createFirework(event.clientX, event.clientY);
+});
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
