@@ -2,369 +2,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#faf6e8">
-  <title>Your Name | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#3b2763">
+<title>Lucy Hope | Portfolio</title>
 
-  <!-- Elegant, free Google Fonts alternatives to IvyPresto -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --cream: #faf6e8;
-      --violet: #3b2763;
-      --muted: #82758e;
-      --line: #ded5c4;
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "DM Sans", sans-serif;
-    }
+<style>
+:root {
+  --cream: #faf6e8;
+  --violet: #3b2763;
+  --muted: #81728d;
+  --line: #ded5c4;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
+html { scroll-behavior: smooth; scroll-padding-top: 85px; }
 
-    body {
-      background: var(--cream);
-      color: var(--violet);
-      font-family: var(--sans);
-      line-height: 1.8;
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg transform='rotate(-42 16 16)'%3E%3Cpath d='M16 8 L16 29' stroke='%233b2763' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M16 2 L18 7 L23 9 L18 11 L16 16 L14 11 L9 9 L14 7 Z' fill='%233b2763'/%3E%3C/g%3E%3C/svg%3E") 8 8, auto;
-    }
+body {
+  background: var(--cream);
+  color: var(--violet);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
 
-    a, button {
-      color: inherit;
-      cursor: pointer;
-    }
+/* Custom wand cursor: violet shaft, white handle, star tip */
+body, a, button {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg transform='rotate(43 22 22)'%3E%3Cpath d='M22 14 L22 36' stroke='%233b2763' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M22 29 L22 37' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M22 1 L26 13 L38 17 L26 21 L22 33 L18 21 L6 17 L18 13 Z' fill='%233b2763' stroke='%23faf6e8' stroke-width='.7'/%3E%3C/g%3E%3C/svg%3E") 13 13, auto;
+}
 
-    a {
-      text-decoration: none;
-    }
+a { color: inherit; text-decoration: none; }
+a:hover { opacity: .7; }
+button { font: inherit; }
+::selection { background: var(--violet); color: var(--cream); }
 
-    a:hover {
-      opacity: 0.65;
-    }
+/* INTRO: FULL PURPLE SCREEN */
 
-    ::selection {
-      background: var(--violet);
-      color: var(--cream);
-    }
+#opening {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  color: var(--cream);
+  background: var(--violet);
+  transition: opacity .85s ease, visibility .85s ease;
+}
 
-    /* Navigation */
+#opening.dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 8%;
-      background: var(--cream);
-      border-bottom: 1px solid var(--line);
-    }
+.opening-kicker {
+  font-size: .72rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  opacity: .8;
+  margin-bottom: 24px;
+}
 
-    .monogram {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
+.opening-title {
+  max-width: 750px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.04em;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      font-size: 0.85rem;
-    }
+.opening-subtitle {
+  margin-top: 22px;
+  font-size: .95rem;
+  opacity: .82;
+}
 
-    /* Opening section */
+.star-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(28px, 7vw, 72px);
+  margin: 48px 0 28px;
+}
 
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 100px 12%;
-      position: relative;
-      overflow: hidden;
-    }
+.star-button {
+  border: 0;
+  background: transparent;
+  color: var(--cream);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  transition: transform .25s ease, color .25s ease;
+  animation: twinkle 2.5s ease-in-out infinite alternate;
+}
 
-    .eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
+.star-button:nth-child(2) { animation-delay: .6s; }
+.star-button:nth-child(3) { animation-delay: 1.2s; }
 
-    h1, h2, h3 {
-      font-family: var(--serif);
-      font-weight: 400;
-      line-height: 1.15;
-    }
+.star-button:hover {
+  transform: scale(1.35) rotate(18deg);
+  color: white;
+}
 
-    h1 {
-      font-size: clamp(3.5rem, 9vw, 7rem);
-      letter-spacing: -0.045em;
-      max-width: 850px;
-    }
+.star-button:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 8px;
+}
 
-    .hero-subtitle {
-      margin-top: 24px;
-      max-width: 450px;
-      font-size: 0.95rem;
-    }
+@keyframes twinkle {
+  from { opacity: .65; transform: scale(.9); }
+  to { opacity: 1; transform: scale(1.08); }
+}
 
-    .hero-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      margin-top: 34px;
-      font-size: 0.85rem;
-    }
+.opening-instruction {
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .75;
+}
 
-    .text-link {
-      border-bottom: 1px solid var(--violet);
-      padding-bottom: 4px;
-    }
+.opening-note {
+  position: absolute;
+  bottom: 25px;
+  font-size: .7rem;
+  opacity: .55;
+}
 
-    /* Magician's hat and name reveal */
+/* Sparkle effects */
 
-    .magic-scene {
-      position: relative;
-      width: 210px;
-      height: 155px;
-      margin-top: 65px;
-      margin-left: 10px;
-    }
+#effects {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-    .hat {
-      position: absolute;
-      width: 128px;
-      height: 65px;
-      left: 28px;
-      bottom: 12px;
-      background: var(--violet);
-      border-radius: 5px 5px 15px 15px;
-      z-index: 2;
-    }
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--cream);
+  line-height: 1;
+  animation: sparkle-burst 900ms ease-out forwards;
+  will-change: transform, opacity;
+}
 
-    .hat::before {
-      content: "";
-      position: absolute;
-      width: 100px;
-      height: 84px;
-      background: var(--violet);
-      left: 14px;
-      bottom: 40px;
-      clip-path: polygon(24% 100%, 39% 0, 68% 0, 83% 100%);
-    }
+@keyframes sparkle-burst {
+  0% {
+    opacity: 0;
+    transform: translate(0,0) scale(.2) rotate(0deg);
+  }
+  15% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform:
+      translate(var(--dx), var(--dy))
+      scale(.1)
+      rotate(130deg);
+  }
+}
 
-    .hat::after {
-      content: "";
-      position: absolute;
-      width: 155px;
-      height: 18px;
-      left: -13px;
-      bottom: -7px;
-      border-radius: 50%;
-      background: var(--violet);
-    }
+/* PORTFOLIO */
 
-    .hat-band {
-      position: absolute;
-      height: 8px;
-      background: #c9b8d9;
-      left: 0;
-      right: 0;
-      bottom: 13px;
-      z-index: 3;
-    }
+#portfolio {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease;
+}
 
-    .pulled-name {
-      position: absolute;
-      z-index: 1;
-      left: 4px;
-      bottom: 52px;
-      width: 180px;
-      text-align: center;
-      font-family: var(--serif);
-      font-size: 1.7rem;
-      font-weight: 600;
-      opacity: 0;
-      transform: translateY(35px) rotate(-5deg);
-      white-space: nowrap;
-    }
+#portfolio.visible {
+  opacity: 1;
+  visibility: visible;
+}
 
-    .magic-scene.revealed .pulled-name {
-      animation: pull-name 1.6s cubic-bezier(.2,.8,.2,1) forwards;
-    }
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 8%;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
 
-    .magic-scene.revealed .sparkle {
-      animation: sparkle 1s ease-out forwards;
-    }
+.monogram {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 1.45rem;
+}
 
-    .sparkle {
-      position: absolute;
-      color: var(--violet);
-      opacity: 0;
-      font-size: 1.5rem;
-    }
+.nav-links {
+  display: flex;
+  gap: 30px;
+  font-size: .85rem;
+}
 
-    .sparkle.one {
-      top: 5px;
-      left: 5px;
-    }
+.hero {
+  min-height: 82vh;
+  padding: 90px 10%;
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  align-items: center;
+  gap: 55px;
+}
 
-    .sparkle.two {
-      top: 30px;
-      right: 8px;
-      font-size: 1rem;
-      animation-delay: 0.3s !important;
-    }
+.eyebrow, .section-label {
+  color: var(--muted);
+  font-size: .72rem;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
 
-    @keyframes pull-name {
-      0% {
-        opacity: 0;
-        transform: translateY(35px) rotate(-5deg);
-      }
-      65% {
-        opacity: 1;
-        transform: translateY(-70px) rotate(3deg);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(-65px) rotate(0deg);
-      }
-    }
+.eyebrow { margin-bottom: 20px; }
 
-    @keyframes sparkle {
-      0% {
-        opacity: 0;
-        transform: scale(0.3) rotate(0);
-      }
-      45% {
-        opacity: 1;
-        transform: scale(1.2) rotate(35deg);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0.5) rotate(70deg);
-      }
-    }
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  line-height: 1.18;
+}
 
-    /* Main sections */
+h1 {
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  letter-spacing: -.045em;
+  margin-bottom: 24px;
+}
 
-    section.content-section {
-      padding: 100px 12%;
-      border-top: 1px solid var(--line);
-      scroll-margin-top: 70px;
-    }
+h1 span { display: block; }
 
-    .section-label {
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
+.hero-bio {
+  max-width: 650px;
+  font-size: .98rem;
+  line-height: 1.95;
+}
 
-    h2 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin-bottom: 30px;
-    }
+.hero-photo {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #eee5d5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: .8rem;
+}
 
-    .blank-space {
-      min-height: 70px;
-    }
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .project {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--line);
-    }
+.photo-placeholder {
+  padding: 24px;
+}
 
-    .project h3 {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-    }
+.section {
+  padding: 100px 12%;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 65px;
+}
 
-    .project p {
-      min-height: 24px;
-    }
+.section-label { margin-bottom: 18px; }
 
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 26px;
-      margin-top: 28px;
-    }
+h2 {
+  font-size: clamp(2.7rem, 5vw, 4.4rem);
+  margin-bottom: 30px;
+}
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 25px 8%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+.section-intro {
+  max-width: 650px;
+  margin-bottom: 40px;
+}
 
-    @media (max-width: 600px) {
-      nav {
-        padding: 16px 5%;
-      }
+.project {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
 
-      .nav-links {
-        gap: 13px;
-        font-size: 0.75rem;
-      }
+.project:last-child {
+  border-bottom: 1px solid var(--line);
+}
 
-      .hero {
-        min-height: 80vh;
-        padding: 75px 7%;
-      }
+.project h3 {
+  font-size: 1.7rem;
+  min-height: 35px;
+}
 
-      section.content-section {
-        padding: 75px 7%;
-      }
+.project p { min-height: 25px; }
 
-      .magic-scene {
-        margin-top: 55px;
-      }
+.project a {
+  display: inline-block;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--violet);
+  font-size: .85rem;
+}
 
-      footer {
-        padding: 20px 6%;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-    }
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 30px;
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+.contact-row a {
+  border-bottom: 1px solid var(--violet);
+}
 
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-  </style>
+footer {
+  padding: 25px 8%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .75rem;
+}
+
+@media (max-width: 750px) {
+  nav { padding: 16px 5%; }
+  .nav-links { gap: 14px; font-size: .76rem; }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 70px 7%;
+  }
+  .hero-photo { max-width: 270px; }
+  .section { padding: 70px 7%; }
+  footer { padding: 22px 6%; flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <nav>
-    <a href="#home" class="monogram">YN.</a>
+<div id="effects" aria-hidden="true"></div>
 
+<!-- Opening screen -->
+<section id="opening" aria-label="Welcome">
+  <p class="opening-kicker">A personal portfolio · 2026</p>
+  <h1 class="opening-title">A little curiosity<br>goes a long way.</h1>
+  <p class="opening-subtitle">Every great idea begins with a little wonder.</p>
+
+  <div class="star-field" aria-label="Choose a star to begin">
+    <button class="star-button" aria-label="Reveal portfolio">✧</button>
+    <button class="star-button" aria-label="Reveal portfolio">✦</button>
+    <button class="star-button" aria-label="Reveal portfolio">✧</button>
+  </div>
+
+  <p class="opening-instruction">Click a star to discover</p>
+  <p class="opening-note">Lucy Hope · Business · Analytics · AI</p>
+</section>
+
+<div id="portfolio">
+  <nav>
+    <a class="monogram" href="#home">LH.</a>
     <div class="nav-links">
       <a href="#about">About Me</a>
       <a href="#projects">Projects</a>
@@ -372,94 +387,154 @@
     </div>
   </nav>
 
-  <header class="hero" id="home">
-    <p class="eyebrow">Portfolio · 2026</p>
-
-    <h1>Hello, I'm<br>Your Name.</h1>
-
-    <p class="hero-subtitle">
-      <!-- Your professional introduction -->
-    </p>
-
-    <div class="hero-links">
-      <a class="text-link" href="#projects">Explore my work ↗</a>
-      <a href="#contact">Get in touch</a>
-    </div>
-
-    <div class="magic-scene" id="magicScene" aria-label="A magician's hat reveals my name">
-      <span class="sparkle one" aria-hidden="true">✧</span>
-      <span class="sparkle two" aria-hidden="true">✦</span>
-
-      <div class="pulled-name" aria-hidden="true">Your Name</div>
-
-      <div class="hat">
-        <div class="hat-band"></div>
-      </div>
-    </div>
-  </header>
-
   <main>
-    <section class="content-section" id="about">
-      <p class="section-label">01 / Introduction</p>
+    <header class="hero" id="home">
+      <div>
+        <p class="eyebrow">Hello there · Welcome to my portfolio</p>
+        <h1><span>Hello, I'm</span><span>Lucy Hope!</span></h1>
+        <p class="hero-bio">
+          Hi, I'm Lucy! I'm a freshman at The University of Texas at Dallas
+          studying Business Analytics and Artificial Intelligence. I'm interested
+          in how data, technology, and business strategy come together to solve
+          problems and make better decisions. I enjoy analytical problem-solving,
+          exploring new applications of AI, and finding ways to turn ideas into
+          practical results. I'm always looking to learn, take on new challenges,
+          and connect with people working at the intersection of business and
+          technology.
+        </p>
+      </div>
+
+      <div class="hero-photo">
+        <!-- Upload your LinkedIn photo to the repository as profile.jpg.
+             Then replace this placeholder with:
+             <img src="profile.jpg" alt="Lucy Hope"> -->
+        <div class="photo-placeholder">
+          Your photo goes here.<br><br>
+          Add <strong>profile.jpg</strong> to your repository.
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="about">
+      <p class="section-label">01 / A little about me</p>
       <h2>About Me</h2>
-      <div class="blank-space">
-        <!-- Add your biography here -->
-      </div>
+      <p class="section-intro">
+        I'm curious about the decisions, systems, and ideas that shape how
+        organizations work. I enjoy combining analytical thinking with a
+        practical, people-focused approach to solving problems.
+      </p>
+      <!-- Add your education, experience, leadership, and interests here. -->
     </section>
 
-    <section class="content-section" id="projects">
-      <p class="section-label">02 / Selected Work</p>
+    <section class="section" id="projects">
+      <p class="section-label">02 / Things I've worked on</p>
       <h2>Projects</h2>
+      <p class="section-intro">
+        A selection of projects, experiments, and ideas.
+      </p>
 
       <article class="project">
-        <h3><!-- Project One --></h3>
+        <h3><!-- Project title --></h3>
         <p><!-- Project description --></p>
-        <a href="#" class="text-link">View project ↗</a>
+        <a href="#"><!-- View project --></a>
       </article>
 
       <article class="project">
-        <h3><!-- Project Two --></h3>
+        <h3><!-- Project title --></h3>
         <p><!-- Project description --></p>
-        <a href="#" class="text-link">View project ↗</a>
+        <a href="#"><!-- View project --></a>
       </article>
 
       <article class="project">
-        <h3><!-- Project Three --></h3>
+        <h3><!-- Project title --></h3>
         <p><!-- Project description --></p>
-        <a href="#" class="text-link">View project ↗</a>
+        <a href="#"><!-- View project --></a>
       </article>
     </section>
 
-    <section class="content-section" id="contact">
-      <p class="section-label">03 / Correspondence</p>
+    <section class="section" id="contact">
+      <p class="section-label">03 / Get in touch</p>
       <h2>Contact</h2>
+      <p class="section-intro">
+        Interested in connecting, collaborating, or talking about business,
+        analytics, or AI? I'd love to hear from you.
+      </p>
 
-      <div class="blank-space">
-        <!-- Add your contact information here -->
-      </div>
-
-      <div class="contact-links">
-        <!-- Add email, LinkedIn, and GitHub links here -->
+      <div class="contact-row">
+        <!-- Replace # with your real links -->
+        <a href="mailto:YOUR_EMAIL_HERE">Email ↗</a>
+        <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="https://github.com/lucyanthope" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <span>© 2026 Your Name</span>
-    <span>Made with curiosity & a little magic.</span>
+    <span>© 2026 Lucy Hope</span>
+    <span>Built with curiosity ✧</span>
   </footer>
+</div>
 
-  <script>
-    const magicScene = document.getElementById("magicScene");
-    let revealed = false;
+<script>
+const opening = document.getElementById("opening");
+const portfolio = document.getElementById("portfolio");
+const effects = document.getElementById("effects");
+let hasOpened = false;
 
-    window.addEventListener("scroll", () => {
-      if (!revealed && window.scrollY > 20) {
-        revealed = true;
-        magicScene.classList.add("revealed");
-      }
-    }, { passive: true });
-  </script>
+function sparkleBurst(x, y, count = 22, openingMode = false) {
+  const symbols = ["✦", "✧", "⋆", "✴", "·"];
+
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement("span");
+    particle.className = "particle";
+    particle.textContent = symbols[i % symbols.length];
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
+    particle.style.fontSize = (10 + Math.random() * 15) + "px";
+    particle.style.color = openingMode
+      ? (i % 2 ? "#faf6e8" : "#d5c4f2")
+      : (i % 2 ? "#3b2763" : "#a58bd0");
+
+    const angle = (Math.PI * 2 * i) / count;
+    const distance = 35 + Math.random() * (openingMode ? 150 : 65);
+
+    particle.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+    particle.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+
+    effects.appendChild(particle);
+    particle.addEventListener("animationend", () => particle.remove());
+  }
+}
+
+function openPortfolio(event) {
+  if (hasOpened) return;
+  hasOpened = true;
+
+  const x = event.clientX || window.innerWidth / 2;
+  const y = event.clientY || window.innerHeight / 2;
+
+  sparkleBurst(x, y, 48, true);
+
+  // Make the violet screen fade away after the starburst begins.
+  setTimeout(() => {
+    opening.classList.add("dismissed");
+    portfolio.classList.add("visible");
+    document.body.style.background = "#faf6e8";
+    document.querySelector('meta[name="theme-color"]')
+      .setAttribute("content", "#faf6e8");
+  }, 300);
+}
+
+document.querySelectorAll(".star-button").forEach(button => {
+  button.addEventListener("click", openPortfolio);
+});
+
+// A smaller sparkle firework on clicks throughout the portfolio.
+document.addEventListener("click", event => {
+  if (!hasOpened || event.target.closest(".star-button")) return;
+  sparkleBurst(event.clientX, event.clientY, 14, false);
+});
+</script>
 
 </body>
 </html>
